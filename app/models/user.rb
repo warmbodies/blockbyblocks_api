@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   before_create :set_access_token
 
+  PARAMS = [:email, :password, :first_name, :last_name]
+
   private
     def set_access_token
       self.access_token = SecureRandom.urlsafe_base64
