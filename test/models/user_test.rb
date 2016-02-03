@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def test_sets_access_token
+    assert User.create!(email: 'something@something.com', password: 'asdfasdf').access_token
+  end
 end
