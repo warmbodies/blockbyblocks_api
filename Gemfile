@@ -43,6 +43,7 @@ end
 
 group :test do
   gem 'minitest-rails', '~> 2.2'
+  gem 'minitest-reporters', '~> 1.1', '>= 1.1.7'
 end
 
 group :development do
