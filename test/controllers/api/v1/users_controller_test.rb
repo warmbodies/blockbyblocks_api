@@ -14,7 +14,7 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
 
   def test_create
     assert_difference "User.count" do
-      post :create, { user: { email: 'some@email.com', password: 'asdfasdf', first_name: 'John', last_name: 'Smith' } }
+      post :create, { user: { email: 'some@email.com', password: 'asdfasdf', first_name: 'John', last_name: 'Smith', username: 'some_username' } }
     end
 
     assert_success
@@ -25,6 +25,7 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     assert_equal 'asdfasdf', user.password
     assert_equal 'John', user.first_name
     assert_equal 'Smith', user.last_name
+    assert_equal 'some_username', user.username
   end
 
   def test_forgot_password_with_invalid_credentials

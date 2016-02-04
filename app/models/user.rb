@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   has_many :appointments
   has_many :bookies, through: :appointments
 
-  PARAMS = [:email, :password, :first_name, :last_name]
+  PARAMS = [:email, :password, :first_name, :last_name, :username]
+
+  validates :username, :first_name, :last_name, presence: true
 
   private
     def set_access_token
