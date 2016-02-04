@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   before_create :set_access_token
 
+  has_many :appointments
+  has_many :bookies, through: :appointments
+
   PARAMS = [:email, :password, :first_name, :last_name]
 
   private
