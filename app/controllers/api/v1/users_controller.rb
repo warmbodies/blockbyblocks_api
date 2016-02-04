@@ -9,6 +9,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      render json: @user, status: :ok, serializer: Api::V1::UserSerializer
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
   def forgot_password
     if params[:user].try(:[], :email).present?
       @user = User.find_by_email(params[:user][:email])

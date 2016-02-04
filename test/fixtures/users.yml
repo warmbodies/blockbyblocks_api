@@ -1,8 +1,14 @@
 one:
   email: 'test@test.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  username: 'test'
+  first_name: 'Test'
+  last_name: 'Test'
 
 reset_password:
   email: 'reset@password.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   reset_password_token: 'some_reset_password_token'
+  username: 'reset'
+  first_name: 'Reset'
+  last_name: 'Password'
