@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'pry', '~> 0.10.3'
+gem 'passenger', '~> 5.0', '>= 5.0.23'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
