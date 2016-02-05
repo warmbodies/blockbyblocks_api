@@ -2,3 +2,4 @@ one:
   user: one
   bookie: one
   time: <%= DateTime.now %>
+  bookie_note: 'Some note'
