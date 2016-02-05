@@ -21,3 +21,7 @@ class ActiveSupport::TestCase
     assert_equal Mime::JSON, response.content_type
   end
 end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+end

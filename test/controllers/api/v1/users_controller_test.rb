@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class Api::V1::UsersControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
-
   def test_create_with_invalid_credentials
     assert_no_difference "User.count" do
       post :create, { user: { email: nil, password: nil } }

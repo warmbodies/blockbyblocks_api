@@ -9,6 +9,8 @@ Rails.application.routes.draw do
           post :forgot_password
           post :reset_password
         end
+
+        resources :appointments, only: [:index]
       end
     end
   end
