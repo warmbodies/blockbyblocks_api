@@ -1,4 +1,6 @@
 class Api::V1::SessionsController < Api::V1::BaseController
+  skip_before_filter :authenticate_user_from_token!, only: [:create]
+
   def create
     if params[:user].present? && params[:user][:email].present? && params[:user][:password].present?
       @user = User.find_by_email(params[:user][:email])

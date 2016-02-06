@@ -78,14 +78,22 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
   end
 
   def test_update
-    put :update, { id: users(:one).id, user: { phone: '123-123-1234', remind_via_phone: true, remind_via_email: true } }
+    user = users(:one)
+
+    set_headers(user)
+
+    put :update, { id: user.id, user: { phone: '123-123-1234', remind_via_phone: true, remind_via_email: true } }
 
     assert_success
     assert_json
   end
 
   def test_update_with_invalid_credentials
-    put :update, { id: users(:one).id, user: { email: nil } }
+    user = users(:one)
+
+    set_headers(user)
+
+    put :update, { id: user.id, user: { email: nil } }
 
     assert_unprocessable_entity
     assert_json

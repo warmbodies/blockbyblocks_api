@@ -1,4 +1,6 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < Api::V1::BaseController
+  skip_before_filter :authenticate_user_from_token!, only: [:create, :forgot_password, :reset_password]
+
   def create
     @user = User.new(user_params)
 

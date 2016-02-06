@@ -4,6 +4,7 @@ one:
   username: 'test'
   first_name: 'Test'
   last_name: 'Test'
+  access_token: 'some_access_token'
 
 reset_password:
   email: 'reset@password.com'

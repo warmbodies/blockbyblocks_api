@@ -1,5 +1,5 @@
 class BlockByBlocksUrl
-  def reset_password_url(token)
+  def self.reset_password_url(token)
     "#{self.root_url}/reset-password/#{token}"
   end
 

@@ -24,4 +24,9 @@ end
 
 class ActionController::TestCase
   include Devise::TestHelpers
+
+  def set_headers(user)
+    token = "Token token=\"#{user.access_token}\", email=\"#{user.email}\""
+    @request.env['HTTP_AUTHORIZATION'] = token
+  end
 end
