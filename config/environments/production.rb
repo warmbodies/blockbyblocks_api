@@ -63,6 +63,7 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => 'https://blockbyblocks.com' }
 
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV["SENDGRID_USERNAME"],
