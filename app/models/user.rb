@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :rememberable, :trackable, :validatable
 
   before_create :set_access_token
   before_create :set_gravatar_url
@@ -10,9 +9,10 @@ class User < ActiveRecord::Base
   has_many :appointments
   has_many :bookies, through: :appointments
 
-  PARAMS = [:email, :password, :first_name, :last_name, :username, :phone, :remind_via_email, :remind_via_phone]
+  PARAMS = [:email, :password, :password_confirmation, :first_name, :last_name, :username, :phone, :remind_via_email, :remind_via_phone]
 
-  validates :username, :first_name, :last_name, presence: true
+  validates :username, presence: true
+  validates :username, uniqueness: true
 
   private
     def set_access_token
