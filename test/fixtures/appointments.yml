@@ -3,3 +3,6 @@ one:
   bookie: one
   time: <%= DateTime.now %>
   bookie_note: 'Some note'
+  user_note: 'hi'
+  occurred: true
+
