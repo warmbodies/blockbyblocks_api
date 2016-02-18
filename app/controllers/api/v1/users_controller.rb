@@ -2,6 +2,8 @@ class Api::V1::UsersController < Api::V1::BaseController
   skip_before_filter :authenticate_user_from_token!, only: [:create, :show, :forgot_password, :reset_password]
   before_filter :try_authenticate_user_from_token, only: [:show]
 
+  after_action :verify_authorized, only: :update
+
   def create
     @user = User.new(user_params)
 
@@ -21,6 +23,8 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def update
     @user = User.find(params[:id])
+
+    authorize @user
 
     if @user.update(user_params)
       render json: @user, status: :ok, serializer: Api::V1::UserSerializer

@@ -1,4 +1,6 @@
 class Api::V1::BaseController < ApplicationController
+  include Pundit
+
   before_action :authenticate_user_from_token!
 
   private
