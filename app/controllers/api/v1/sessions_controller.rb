@@ -16,6 +16,10 @@ class Api::V1::SessionsController < Api::V1::BaseController
     end
   end
 
+  def current_users
+    render json: current_user, status: :ok, serializer: Api::V1::CurrentUserSerializer
+  end
+
   private
     def session_params
       params.require(:user).permit(:email, :password)

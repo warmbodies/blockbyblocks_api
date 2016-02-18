@@ -1,5 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  skip_before_filter :authenticate_user_from_token!, only: [:create, :forgot_password, :reset_password]
+  skip_before_filter :authenticate_user_from_token!, only: [:create, :show, :forgot_password, :reset_password]
+  before_filter :try_authenticate_user_from_token, only: [:show]
 
   def create
     @user = User.new(user_params)
@@ -9,6 +10,13 @@ class Api::V1::UsersController < Api::V1::BaseController
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
+
+    serializer = current_user.present? ? Api::V1::CurrentUserSerializer : Api::V1::UserSerializer
+    render json: @user, status: :ok, serializer: serializer
   end
 
   def update

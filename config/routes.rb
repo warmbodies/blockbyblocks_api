@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:create, :update] do
+      get 'current_users', to: 'sessions#current_users'
+
+      resources :users, only: [:create, :show, :update] do
         collection do
           post :forgot_password
           post :reset_password

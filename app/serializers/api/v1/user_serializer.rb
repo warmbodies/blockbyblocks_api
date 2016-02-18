@@ -1,3 +1,3 @@
 class Api::V1::UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :access_token, :first_name, :last_name
+  attributes :id, :email, :first_name, :last_name, :username, :gravatar_url
 end

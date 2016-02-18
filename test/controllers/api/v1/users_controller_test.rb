@@ -27,6 +27,47 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     assert_equal 'some_username', user.username
   end
 
+  def test_show_not_logged_in
+    get :show, { id: users(:one).id }
+
+    assert_success
+    assert_json
+
+    user = JSON.parse(@response.body)["user"]
+    assert user["id"]
+    assert user["email"]
+    assert user["first_name"]
+    assert user["last_name"]
+    assert user["username"]
+    assert user["gravatar_url"]
+
+    refute user["phone"]
+    refute user["remind_via_email"]
+    refute user["remind_via_phone"]
+  end
+
+  def test_show_logged_in
+    user = users(:one)
+
+    set_headers(user)
+
+    get :show, { id: user.id }
+
+    assert_success
+    assert_json
+
+    user = JSON.parse(@response.body)["current_user"]
+    assert user["id"]
+    assert user["email"]
+    assert user["first_name"]
+    assert user["last_name"]
+    assert user["phone"]
+    assert user["username"]
+    assert user["remind_via_email"]
+    assert user["remind_via_phone"]
+    assert user["gravatar_url"]
+  end
+
   def test_forgot_password_with_invalid_credentials
     post :forgot_password, { user: { email: nil } }
 

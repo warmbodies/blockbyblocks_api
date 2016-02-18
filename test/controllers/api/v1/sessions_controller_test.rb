@@ -21,4 +21,13 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
     assert_success
     assert_json
   end
+
+  def test_current_user
+    set_headers(users(:one))
+
+    get :current_users
+
+    assert_success
+    assert_json
+  end
 end
