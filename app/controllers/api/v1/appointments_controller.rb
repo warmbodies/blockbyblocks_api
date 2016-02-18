@@ -1,6 +1,6 @@
 class Api::V1::AppointmentsController < Api::V1::BaseController
   skip_before_filter :authenticate_user_from_token!
-  before_filter :authenticate_user_from_token
+  before_filter :try_authenticate_user_from_token
 
   def index
     @appointments = Appointment.where(user_id: params[:user_id])

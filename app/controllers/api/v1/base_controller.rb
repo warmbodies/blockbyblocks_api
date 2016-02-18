@@ -3,12 +3,12 @@ class Api::V1::BaseController < ApplicationController
 
   private
     def authenticate_user_from_token!
-      authenticate_user_from_token
+      try_authenticate_user_from_token
 
       render json: { error: 'Token authentication failed.'}, status: 401 unless current_user.present?
     end
 
-    def authenticate_user_from_token
+    def try_authenticate_user_from_token
       authenticate_with_http_token do |token, options|
         user_email = options[:email].presence
         user = user_email && User.find_by_email(user_email)
