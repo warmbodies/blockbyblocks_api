@@ -5,7 +5,7 @@ defaults: &defaults
   host: localhost
   pool: 5
   port: 5432
-  username: john
+  username: <your-name>
 
 development:
   database: blockbyblocks_dev
